@@ -20,7 +20,7 @@ args =  parser.parse_args()
 if args.use_pass:
     password = getpass.getpass('Enter RAR Password Now \n')
 else:
-    password = " "
+    password = ""
 if args.subject:
     subject = args.subject[0]
 else:
