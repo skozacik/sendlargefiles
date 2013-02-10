@@ -3,7 +3,7 @@ import sys
 import os
 def makeArchive(archname,base,password,filename):
     a = archive.Archive(archname,base)
-    a.add_file(filename)
+    a.add_file(os.path.abspath(filename))
     a.set_volume_size("25m")
     
     a.set_password(password)

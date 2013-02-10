@@ -26,8 +26,9 @@ if args.subject:
 else:
     subject = 'VACATION PHOTOS'
 
+
 rarFileName = librar.file_helper.get_random_temp_dir_name(basedir="/tmp") 
-makerar.makeArchive(rarFileName + '.rar',os.path.dirname(args.filename[0]),password,os.path.abspath(args.filename[0]))
+makerar.makeArchive(rarFileName + '.rar',os.path.dirname(os.path.abspath(args.filename[0])),password,os.path.abspath(args.filename[0]))
 srv = sendemail.connectToServer(args.fromAddress[0],args.s[0])
 parts = fnmatch.filter(os.listdir('/tmp'),os.path.basename(rarFileName)+'.part*'+'.rar')
 lenparts = str(len(parts))
@@ -35,7 +36,7 @@ lenparts = str(len(parts))
 for i,part in enumerate(parts):
     msg = sendemail.makeMessage(args.fromAddress[0],args.to,'/tmp/'+part,subject + ' [' +  str(i+1)+'/'+lenparts +']')
     sendemail.sendMessage(srv,args.fromAddress[0],args.to,msg)
-
+srv.quit()
 
 
 
